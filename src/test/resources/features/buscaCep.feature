@@ -7,7 +7,6 @@ Scenario Outline: Realizar busca CEP com sucesso.
 Given que estou na pagina de Busca CEP
 When eu clico em "CEP ou endereço"
 And eu informo o <cep>
-And no combo CEP de seleciodo "Todos"
 And clico em buscar
 Then será apresentado o <endereço>
 Examples:
