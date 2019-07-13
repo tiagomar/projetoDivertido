@@ -31,7 +31,7 @@ Scenario: Validar segunda recomendação de endereçamento de envelope
   Then eu vejo se a segunda recomendação é "não sublinhar e não colocar ponto entre os algarismos;"
 
 
-Scenario: Funcionalidade: Pesquisa CEP por localidade/Logradouro utilizando apenas os campos obrigatórios
+Scenario: Pesquisa CEP por localidade/Logradouro utilizando apenas os campos obrigatórios
   Given Página principal aberta
   When Escolhe opção Cep por localidade/logradouro
   And Informa apenas os dados obrigatórios
