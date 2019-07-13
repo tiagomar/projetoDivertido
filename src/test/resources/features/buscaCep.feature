@@ -24,10 +24,12 @@ Scenario Outline: Realizar busca CEP com falha.
   |cep    |
   |       |
 
+
 Scenario: Validar segunda recomendação de endereçamento de envelope
   Given que estou na pagina de Busca CEP
   When eu clico em "Formas de Endereçamento"
   Then eu vejo se a segunda recomendação é "não sublinhar e não colocar ponto entre os algarismos;"
+
 
 Scenario: Funcionalidade: Pesquisa CEP por localidade/Logradouro utilizando apenas os campos obrigatórios
   Given Página principal aberta
@@ -35,8 +37,8 @@ Scenario: Funcionalidade: Pesquisa CEP por localidade/Logradouro utilizando apen
   And Informa apenas os dados obrigatórios
   Then Será retornado as informações de endereço dos dados informados
 
-Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
-  Given que estou na pagina inicial dos Correios.
-  When eu informo o "rastreio"
-  And clico na lupa de buscar.
-  Then será exibido o rastreamento.
+Scenario: Alterar o contraste do site
+  Given Página principal Aberta
+  When O usuário desejar alterar o contraste da página
+  And Clicar na opção "contraste"
+  Then O site mudará a cor de exibição
