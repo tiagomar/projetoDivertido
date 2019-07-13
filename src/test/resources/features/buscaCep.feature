@@ -5,24 +5,19 @@ Feature: Busca CEP
 
 Scenario Outline: Realizar busca CEP com sucesso.
   Given que estou na pagina de Busca CEP
-  When eu clico em "CEP ou endereço"
   And eu informo o <cep>
   And clico em buscar
   Then será apresentado o <endereço>
   Examples:
-  |cep    |endereço                   |
-  |       |                           |
+  | cep | endereço |
 
 
-Scenario Outline: Realizar busca CEP com falha.
+Scenario: Realizar busca CEP com falha.
   Given que estou na pagina de Busca CEP
-  When eu informo o <cep> invalido
-  And no combo CEP de seleciodo "Todos"
+  When eu informo o CEP invalido "555555"
+  And seleciono 'Todos' em tipo de CEP
   And clico em buscar
-  Then será retornado erro
-  Examples:
-  |cep    |
-  |       |
+  Then será retornado o erro "DADOS NAO ENCONTRADOS"
 
 Scenario Outline: Buscar por logradouro com erros de digitação
   Given que estou na pagina de Busca CEP
@@ -62,5 +57,19 @@ Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
 
 Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
   Given Que o usuário está na opção de logradouro por bairro
-  When Informar um bairo que não conrresponde a localidade e UF
+  When Informar um bairo que não corresponde a localidade e UF
   Then O bairro não será encontrado
+
+Scenario: Realizar compra no carrinho dos Correios
+  Given que estou na pagina inicial dos Correios.
+  When eu vou em "Loja Virtual"
+  And na busca de produtos eu escrevo "Boneca Carteirinha Negra"
+  And eu clico em "Buscar"
+  And eu seleciono  a boneca
+  Then eu valido o preço dela.
+
+Scenario: validar a opção de retorno após consulta
+  Given Usuário esteja na opção de caixa postal
+  When Após realizar uma pesquisa válida
+  And Selecionar opção de nova consulta
+  Then Será retornado para a tela de consulta
