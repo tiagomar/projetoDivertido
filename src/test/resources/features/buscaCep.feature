@@ -62,5 +62,19 @@ Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
 
 Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
   Given Que o usuário está na opção de logradouro por bairro
-  When Informar um bairo que não conrresponde a localidade e UF
+  When Informar um bairo que não corresponde a localidade e UF
   Then O bairro não será encontrado
+
+Scenario: Realizar compra no carrinho dos Correios
+  Given que estou na pagina inicial dos Correios.
+  When eu vou em "Loja Virtual"
+  And na busca de produtos eu escrevo "Boneca Carteirinha Negra"
+  And eu clico em "Buscar"
+  And eu seleciono  a boneca
+  Then eu valido o preço dela.
+
+Scenario: validar a opção de retorno após consulta
+  Given Usuário esteja na opção de caixa postal
+  When Após realizar uma pesquisa válida
+  And Selecionar opção de nova consulta
+  Then Será retornado para a tela de consulta
