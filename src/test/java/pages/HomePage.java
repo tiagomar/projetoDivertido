@@ -19,11 +19,16 @@ public class HomePage {
     By enderecoOuCepInputText = By.cssSelector(".contentform input[name='relaxation']");
     By tipoDeCepSelect = By.cssSelector("select[name='tipoCEP']");
     By buscarButton = By.cssSelector("input[value='Buscar']");
+    By faixasDeCepLink = By.xpath("//a[contains(text(), 'Faixas de CEP')]");
 
     //Actions
     public HomePage accessHomePage() {
         driver.get(pageUrl);
         return this;
+    }
+
+    public void accessFaixadeCEP() {
+        driver.findElement(faixasDeCepLink).click();
     }
 
     public HomePage insertEnderecoOuCep(String enderecoOuCep) {

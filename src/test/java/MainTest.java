@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
@@ -17,10 +18,9 @@ public class MainTest {
 
         homePage = new HomePage(driver);
 
-        homePage.accessHomePage()
-                .insertEnderecoOuCep("50710-485")
-                .selectPromocional()
-                .buscar();
+        homePage.accessHomePage();
+
+        driver.findElement(By.xpath("//a[contains(text(), 'Faixas de CEP')]")).click();
 
 //        driver.quit();
 
