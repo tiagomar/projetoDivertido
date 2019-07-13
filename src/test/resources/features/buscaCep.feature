@@ -72,3 +72,9 @@ Scenario: Realizar compra no carrinho dos Correios
   And eu clico em "Buscar"
   And eu seleciono  a boneca
   Then eu valido o preço dela.
+
+Scenario: validar a opção de retorno após consulta
+  Given Usuário esteja na opção de caixa postal
+  When Após realizar uma pesquisa válida
+  And Selecionar opção de nova consulta
+  Then Será retornado para a tela de consulta
