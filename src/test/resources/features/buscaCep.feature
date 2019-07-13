@@ -48,3 +48,8 @@ Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
  When eu informo o "rastreio"
  And clico na lupa de buscar.
  Then será exibido o rastreamento.
+
+Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
+  Given Que o usuário está na opção de logradouro por bairro
+  When Informar um bairo que não conrresponde a localidade e UF
+  Then O bairro não será encontrado
