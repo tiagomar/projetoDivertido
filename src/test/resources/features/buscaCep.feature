@@ -42,3 +42,9 @@ Scenario: Alterar o contraste do site
   When O usuário desejar alterar o contraste da página
   And Clicar na opção "contraste"
   Then O site mudará a cor de exibição
+
+Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
+ Given que estou na pagina inicial dos Correios.
+ When eu informo o "rastreio"
+ And clico na lupa de buscar.
+ Then será exibido o rastreamento.
