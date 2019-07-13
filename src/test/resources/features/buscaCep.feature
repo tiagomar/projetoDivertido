@@ -24,6 +24,17 @@ Scenario Outline: Realizar busca CEP com falha.
   |cep    |
   |       |
 
+Scenario Outline: Buscar por logradouro com erros de digitação
+  Given que estou na pagina de Busca CEP
+  When informo o nome do logradouro com erro de digitação: "<wrong_address>"
+  And escolho a busca por nomes parecidos
+  And clico em buscar
+  Then o nome correto do logradouro ("<correct_address>") aparece nos resultados
+
+  Examples:
+  | wrong_address    | correct_address    |
+  | code da boa vita | conde da boa vista |
+
 
 Scenario: Validar segunda recomendação de endereçamento de envelope
   Given que estou na pagina de Busca CEP
