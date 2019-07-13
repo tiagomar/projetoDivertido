@@ -13,7 +13,7 @@ Then será apresentado o <endereço>
 Examples:
 |cep    |endereço                   |
 |       |                           |
-|       |                           |
+
 
 Scenario Outline: Realizar busca CEP com falha.
 Given que estou na pagina de Busca CEP
