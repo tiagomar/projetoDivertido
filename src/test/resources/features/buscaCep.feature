@@ -32,8 +32,8 @@ Scenario Outline: Buscar por logradouro com erros de digitação
   Then o nome correto do logradouro ("<correct_address>") aparece nos resultados
 
   Examples:
-  | wrong_address    | correct_address    |
-  | code da boa vita | conde da boa vista |
+  | wrong_address | correct_address    |
+  | code boa vita | conde da boa vista |
 
 
 Scenario: Validar segunda recomendação de endereçamento de envelope
