@@ -24,7 +24,6 @@ Scenario Outline: Realizar busca CEP com falha.
   |cep    |
   |       |
 
-
 Scenario: Validar segunda recomendação de endereçamento de envelope
   Given que estou na pagina de Busca CEP
   When eu clico em "Formas de Endereçamento"
@@ -35,3 +34,9 @@ Scenario: Funcionalidade: Pesquisa CEP por localidade/Logradouro utilizando apen
   When Escolhe opção Cep por localidade/logradouro
   And Informa apenas os dados obrigatórios
   Then Será retornado as informações de endereço dos dados informados
+
+Scenario: Realizar rastreamento de objeto pela tela inicial dos Correios.
+  Given que estou na pagina inicial dos Correios.
+  When eu informo o "rastreio"
+  And clico na lupa de buscar.
+  Then será exibido o rastreamento.
