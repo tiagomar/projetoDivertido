@@ -7,14 +7,29 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import pages.HomePage;
+import pages.LocalidadePage;
+import pages.LogradouroPorBairroPage;
+import pages.ResultPage;
 
 public class Steps {
     private WebDriver driver;
+
+    HomePage homePage;
+    ResultPage resultPage;
+    LocalidadePage localidadePage;
+    LogradouroPorBairroPage logradouroPorBairroPage;
 
     @Before
     public void beforeScenario() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         this.driver = new ChromeDriver();
+
+        homePage = new HomePage(driver);
+        resultPage = new ResultPage(driver);
+        localidadePage = new LocalidadePage(driver);
+        logradouroPorBairroPage = new LogradouroPorBairroPage(driver);
     }
 
     @After
@@ -24,212 +39,126 @@ public class Steps {
 
     @Given("que estou na pagina de Busca CEP")
     public void que_estou_na_pagina_de_Busca_CEP() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        homePage.accessHomePage();
     }
 
-    @When("eu clico em {string}")
-    public void eu_clico_em(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("eu informo o cep {string}")
+    public void eu_informo_o_cep(String cep) {
+        homePage.insertEnderecoOuCep(cep);
     }
 
-    @When("eu informo o ")
-    public void eu_informo_o() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("clico em buscar")
+    @Given("clico em buscar")
     public void clico_em_buscar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        homePage.buscar();
     }
 
-    @Then("será apresentado o ")
-    public void será_apresentado_o() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("será apresentado o {string} {string} {string} {string}")
+    public void será_apresentado_o(String logradouro,String bairro,String local_UF,String cep) {
+        Assert.assertEquals(resultPage.getLogradouro(), logradouro);
+        Assert.assertEquals(resultPage.getBairro(), bairro);
+        Assert.assertEquals(resultPage.getLocalUf(), local_UF);
+        Assert.assertEquals(resultPage.getCep(), cep);
     }
 
-    @When("eu informo o  invalido")
-    public void eu_informo_o_invalido() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+
+
+    @When("eu informo o CEP invalido {string}")
+    public void eu_informo_o_CEP_invalido(String cepInvalido) {
+        homePage.insertEnderecoOuCep(cepInvalido);
     }
 
-    @When("no combo CEP de seleciodo {string}")
-    public void no_combo_CEP_de_seleciodo(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("será retornado o erro {string}")
+    public void será_retornado_o_erro(String mensagem) {
+        Assert.assertEquals(resultPage.getResultMessage(), mensagem);
     }
 
-    @Then("será retornado erro")
-    public void será_retornado_erro() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
+
 
     @When("informo o nome do logradouro com erro de digitação: {string}")
     public void informo_o_nome_do_logradouro_com_erro_de_digitação(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        homePage.insertEnderecoOuCep(string);
     }
 
     @When("escolho a busca por nomes parecidos")
     public void escolho_a_busca_por_nomes_parecidos() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        homePage.selectPalavrasSemelhantes();
     }
 
-    @Then("o nome correto do logradouro \\({string}) aparece nos resultados")
+    @Then("o nome correto do logradouro aparece nos resultados: {string}")
     public void o_nome_correto_do_logradouro_aparece_nos_resultados(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        resultPage.isInResults(string);
     }
 
-    @Then("eu vejo se a segunda recomendação é {string}")
-    public void eu_vejo_se_a_segunda_recomendação_é(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+
+
+    @When("escolho opção Cep por localidade\\/logradouro")
+    public void escolho_opção_Cep_por_localidade_logradouro() {
+        homePage.accessCepPorLocalidade();
     }
 
-    @Given("Página principal aberta")
-    public void página_principal_aberta() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("não informo a UF")
+    public void não_informo_a_UF() {
+        // Do nothing
     }
 
-    @When("Escolhe opção Cep por localidade\\/logradouro")
-    public void escolhe_opção_Cep_por_localidade_logradouro() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("informo {string} como localidade")
+    public void informo_como_localidade(String string) {
+        localidadePage.informarLocalidade(string);
     }
 
-    @When("Informa apenas os dados obrigatórios")
-    public void informa_apenas_os_dados_obrigatórios() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("informo {string} como logradouro")
+    public void informo_como_logradouro(String string) {
+        localidadePage.informarLogradouro(string);
     }
 
-    @Then("Será retornado as informações de endereço dos dados informados")
-    public void será_retornado_as_informações_de_endereço_dos_dados_informados() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("um alerta diz {string}")
+    public void um_alerta_diz(String string) {
+        Assert.assertEquals(localidadePage.getAlertText(), string);
     }
 
-    @Given("Página principal Aberta")
-    public void página_principal_Aberta() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+
+
+
+    @When("o usuário clica na opção Contraste")
+    public void o_usuário_clica_na_opção_Contraste() {
+        homePage.alternateContrast();
     }
 
-    @When("O usuário desejar alterar o contraste da página")
-    public void o_usuário_desejar_alterar_o_contraste_da_página() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("o site é exibido em modo de alto contraste")
+    public void o_site_é_exibido_em_modo_de_alto_contraste() {
+        Assert.assertTrue(homePage.isContrastModeON());
     }
 
-    @When("Clicar na opção {string}")
-    public void clicar_na_opção(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+
+    @Given("que estou na pagina de Busca de logradouro por bairro")
+    public void que_estou_na_pagina_de_Busca_de_logradouro_por_bairro() {
+        logradouroPorBairroPage.accessPage();
     }
 
-    @Then("O site mudará a cor de exibição")
-    public void o_site_mudará_a_cor_de_exibição() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("informo {string} como UF")
+    public void informo_como_UF(String string) {
+        logradouroPorBairroPage.selectUf(string);
     }
 
-    @Given("que estou na pagina inicial dos Correios.")
-    public void que_estou_na_pagina_inicial_dos_Correios() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("informo localidade através do botão de ajuda")
+    public void informo_localidade_através_do_botão_de_ajuda() {
+        logradouroPorBairroPage.informLocalidadeHelp();
     }
 
-    @When("eu informo o {string}")
-    public void eu_informo_o(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("informo bairro através do botão de ajuda")
+    public void informo_bairro_através_do_botão_de_ajuda() {
+        logradouroPorBairroPage.informBairroHelp();
     }
 
-    @When("clico na lupa de buscar.")
-    public void clico_na_lupa_de_buscar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("vejo mensagem dizendo {string}")
+    public void vejo_mensagem_dizendo(String string) {
+        Assert.assertEquals(resultPage.getResultMessage(), string);
+        Assert.assertTrue(resultPage.isInResults("53515-250"));
     }
 
-    @Then("será exibido o rastreamento.")
-    public void será_exibido_o_rastreamento() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
-    @Given("Que o usuário está na opção de logradouro por bairro")
-    public void que_o_usuário_está_na_opção_de_logradouro_por_bairro() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
-    @When("Informar um bairo que não corresponde a localidade e UF")
-    public void informar_um_bairo_que_não_corresponde_a_localidade_e_UF() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
-    @Then("O bairro não será encontrado")
-    public void o_bairro_não_será_encontrado() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
-    @When("eu vou em {string}")
-    public void eu_vou_em(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("na busca de produtos eu escrevo {string}")
-    public void na_busca_de_produtos_eu_escrevo(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("eu seleciono  a boneca")
-    public void eu_seleciono_a_boneca() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("eu valido o preço dela.")
-    public void eu_valido_o_preço_dela() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Given("Usuário esteja na opção de caixa postal")
-    public void usuário_esteja_na_opção_de_caixa_postal() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("Após realizar uma pesquisa válida")
-    public void após_realizar_uma_pesquisa_válida() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("Selecionar opção de nova consulta")
-    public void selecionar_opção_de_nova_consulta() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("Será retornado para a tela de consulta")
-    public void será_retornado_para_a_tela_de_consulta() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
 }

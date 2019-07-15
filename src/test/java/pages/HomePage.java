@@ -19,12 +19,20 @@ public class HomePage {
     By enderecoOuCepInputText = By.cssSelector(".contentform input[name='relaxation']");
     By tipoDeCepSelect = By.cssSelector("select[name='tipoCEP']");
     By buscarButton = By.cssSelector("input[value='Buscar']");
+    By cepPorLocalidadeLink = By.xpath("//a[contains(text(), 'CEP por Localidade | Logradouro')]");
     By faixasDeCepLink = By.xpath("//a[contains(text(), 'Faixas de CEP')]");
+    By maisOpcoesLink = By.cssSelector(".contentform > .f8col a");
+    By palavrasSemelhantesSimRadio = By.cssSelector("input[value='S']");
+    By contrastLink = By.cssSelector("#contrast a");
 
     //Actions
     public HomePage accessHomePage() {
         driver.get(pageUrl);
         return this;
+    }
+
+    public void accessCepPorLocalidade() {
+        driver.findElement(cepPorLocalidadeLink).click();
     }
 
     public void accessFaixadeCEP() {
@@ -67,9 +75,24 @@ public class HomePage {
         return this;
     }
 
-    public HomePage buscar() {
-        driver.findElement(buscarButton).click();
+    public HomePage selectPalavrasSemelhantes() {
+        driver.findElement(maisOpcoesLink).click();
+        driver.findElement(palavrasSemelhantesSimRadio).click();
         return this;
+    }
+
+    public ResultPage buscar() {
+        driver.findElement(buscarButton).click();
+        return new ResultPage(driver);
+    }
+
+    public HomePage alternateContrast() {
+        driver.findElement(contrastLink).click();
+        return this;
+    }
+
+    public boolean isContrastModeON() {
+        return !driver.findElements(By.cssSelector("body.contrast")).isEmpty();
     }
 
 }
