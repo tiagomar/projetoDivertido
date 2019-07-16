@@ -6,7 +6,7 @@ Feature: Busca CEP
   #OK
 Scenario Outline: Realizar busca CEP com sucesso.
   Given que estou na pagina de Busca CEP
-  And eu informo o cep "<cep>"
+  When eu informo o cep "<cep>"
   And clico em buscar
   Then será apresentado o "<logradouro>" "<bairro>" "<local_UF>" "<cep>"
 
@@ -47,7 +47,7 @@ Scenario: Pesquisa CEP por localidade/Logradouro sem informar um dos campos obri
   And não informo a UF
   And informo "Recife" como localidade
   And informo "Rosa e Silva" como logradouro
-  When clico em buscar
+  And clico em buscar
   Then um alerta diz "Selecione a UF !"
 
 #OK
@@ -76,14 +76,6 @@ Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de 
 #  Given que estou na pagina de Busca de logradouro por bairro
 #  When Informar um bairo que não corresponde a localidade e UF
 #  Then O bairro não será encontrado
-#
-#Scenario: Realizar compra no carrinho dos Correios
-#  Given que estou na pagina inicial dos Correios.
-#  When eu vou em "Loja Virtual"
-#  And na busca de produtos eu escrevo "Boneca Carteirinha Negra"
-#  And eu clico em "Buscar"
-#  And eu seleciono  a boneca
-#  Then eu valido o preço dela.
 #
 #Scenario: validar a opção de retorno após consulta
 #  Given Usuário esteja na opção de caixa postal
