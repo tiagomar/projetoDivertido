@@ -17,7 +17,7 @@ public class Steps {
     ResultPage resultPage;
     LocalidadePage localidadePage;
     LogradouroPorBairroPage logradouroPorBairroPage;
-    FormasEnderecamentoPage formasEnderecamentoPage;
+    EnderecamentoPage enderecamentoPage;
 
     @Before
     public void beforeScenario() {
@@ -29,7 +29,7 @@ public class Steps {
         resultPage = new ResultPage(driver);
         localidadePage = new LocalidadePage(driver);
         logradouroPorBairroPage = new LogradouroPorBairroPage(driver);
-        formasEnderecamentoPage = new FormasEnderecamentoPage(driver);
+        enderecamentoPage = new EnderecamentoPage(driver);
     }
 
     @After
@@ -192,7 +192,7 @@ public class Steps {
 
     @Then("eu vejo se a segunda recomendação é {string}")
     public void eu_vejo_se_a_segunda_recomendação_é(String string) {
-        Assert.assertEquals(formasEnderecamentoPage.getSegundaRecomendacao(), string);
+        Assert.assertEquals(enderecamentoPage.getSegundaRecomendacao(), string);
 
     }
 
