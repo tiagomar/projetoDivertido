@@ -8,10 +8,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import pages.HomePage;
-import pages.LocalidadePage;
-import pages.LogradouroPorBairroPage;
-import pages.ResultPage;
+import pages.*;
 
 public class Steps {
     private WebDriver driver;
@@ -20,16 +17,19 @@ public class Steps {
     ResultPage resultPage;
     LocalidadePage localidadePage;
     LogradouroPorBairroPage logradouroPorBairroPage;
+    FormasEnderecamentoPage formasEnderecamentoPage;
 
     @Before
     public void beforeScenario() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         this.driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
         homePage = new HomePage(driver);
         resultPage = new ResultPage(driver);
         localidadePage = new LocalidadePage(driver);
         logradouroPorBairroPage = new LogradouroPorBairroPage(driver);
+        formasEnderecamentoPage = new FormasEnderecamentoPage(driver);
     }
 
     @After
@@ -42,7 +42,7 @@ public class Steps {
         homePage.accessHomePage();
     }
 
-    @Given("eu informo o cep {string}")
+    @When("eu informo o cep {string}")
     public void eu_informo_o_cep(String cep) {
         homePage.insertEnderecoOuCep(cep);
     }
@@ -183,6 +183,17 @@ public class Steps {
     @Then("o tamanho da fonte será redefinido para o padrão")
     public void o_tamanho_da_fonte_será_redefinido_para_o_padrão() {
         Assert.assertTrue(homePage.isDefaultFont());
+    }
+
+    @When("eu clico em Formas de Endereçamento")
+    public void eu_clico_em() {
+        homePage.clickFormasEnderecamento();
+    }
+
+    @Then("eu vejo se a segunda recomendação é {string}")
+    public void eu_vejo_se_a_segunda_recomendação_é(String string) {
+        Assert.assertEquals(formasEnderecamentoPage.getSegundaRecomendacao(), string);
+
     }
 
 

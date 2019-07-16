@@ -33,12 +33,12 @@ Scenario Outline: Buscar por logradouro com erros de digitação
   | wrong_address | correct_address    |
   | code boa vita | Conde da Boa Vista |
 
+#OK
+Scenario: Validar segunda recomendação de endereçamento de envelope
+  Given que estou na pagina de Busca CEP
+  When eu clico em Formas de Endereçamento
+  Then eu vejo se a segunda recomendação é "não sublinhar e não colocar ponto entre os algarismos"
 
-#######Scenario: Validar segunda recomendação de endereçamento de envelope
-#  Given que estou na pagina de Busca CEP
-#  When eu clico em "Formas de Endereçamento"
-#  Then eu vejo se a segunda recomendação é "não sublinhar e não colocar ponto entre os algarismos;"
-#
 
 #OK
 Scenario: Pesquisa CEP por localidade/Logradouro sem informar um dos campos obrigatórios

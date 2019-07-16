@@ -30,6 +30,7 @@ public class HomePage {
     By minFont = By.cssSelector("body[style='font-size: 8px;']");
     By defaultFont = By.cssSelector("body[style='font-size: 10px;']");
     By maxFont = By.cssSelector("body[style='font-size: 12px;']");
+    By formasEnderecamentoLink = By.cssSelector("li:nth-child(10)");
 
     //Actions
     public HomePage accessHomePage() {
@@ -114,6 +115,11 @@ public class HomePage {
     public HomePage clickDefaultFont() {
         driver.findElement(defaultFontLink).click();
         return this;
+    }
+
+    public  HomePage clickFormasEnderecamento() {
+        driver.findElement(formasEnderecamentoLink).click();
+        return  this;
     }
 
     public boolean isMinFont() {
