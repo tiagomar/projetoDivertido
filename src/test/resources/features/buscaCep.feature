@@ -15,7 +15,7 @@ Scenario Outline: Realizar busca CEP com sucesso.
   | 50030-310 | Avenida Rio Branco | Recife | Recife/PE |
 
 #OK
-Scenario: Realizar busca CEP com falha.c
+Scenario: Realizar busca CEP com falha
   Given que estou na pagina de Busca CEP
   When eu informo o CEP invalido "555555"
   And clico em buscar
@@ -62,6 +62,7 @@ Scenario: Alterar o contraste do site
 # And clico na lupa de buscar.
 # Then será exibido o rastreamento.
 #
+
 # OK
 Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de ajuda
   Given que estou na pagina de Busca de logradouro por bairro
@@ -89,3 +90,19 @@ Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de 
 #  When Após realizar uma pesquisa válida
 #  And Selecionar opção de nova consulta
 #  Then Será retornado para a tela de consulta
+
+  Scenario: Ajustar tamanho da fonte para o máximo
+    Given que estou na pagina de Busca CEP
+    When eu clico duas vezes no botão de aumentar a fonte
+    Then o tamanho da fonte será o máximo
+
+  Scenario: Ajustar tamanho da fonte para o mínimo
+    Given que estou na pagina de Busca CEP
+    When eu clico duas vezes no botão de diminuir a fonte
+    Then o tamanho da fonte será o mínimo
+
+  Scenario: Ajustar tamanho da fonte para o padrão
+    Given que estou na pagina de Busca CEP
+    And fonte está em tamanho máximo
+    When eu clico em Tamanho padrão
+    Then o tamanho da fonte será redefinido para o padrão

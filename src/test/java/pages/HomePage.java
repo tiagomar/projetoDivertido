@@ -24,6 +24,12 @@ public class HomePage {
     By maisOpcoesLink = By.cssSelector(".contentform > .f8col a");
     By palavrasSemelhantesSimRadio = By.cssSelector("input[value='S']");
     By contrastLink = By.cssSelector("#contrast a");
+    By biggerFontButton = By.cssSelector("#biggerFont");
+    By smallerFontButton = By.cssSelector("#smallerFont");
+    By defaultFontLink = By.cssSelector("#defaultFont");
+    By minFont = By.cssSelector("body[style='font-size: 8px;']");
+    By defaultFont = By.cssSelector("body[style='font-size: 10px;']");
+    By maxFont = By.cssSelector("body[style='font-size: 12px;']");
 
     //Actions
     public HomePage accessHomePage() {
@@ -93,6 +99,33 @@ public class HomePage {
 
     public boolean isContrastModeON() {
         return !driver.findElements(By.cssSelector("body.contrast")).isEmpty();
+    }
+
+    public HomePage clickBiggerFont() {
+        driver.findElement(biggerFontButton).click();
+        return this;
+    }
+
+    public HomePage clickSmallerFont() {
+        driver.findElement(smallerFontButton).click();
+        return this;
+    }
+
+    public HomePage clickDefaultFont() {
+        driver.findElement(defaultFontLink).click();
+        return this;
+    }
+
+    public boolean isMinFont() {
+        return !driver.findElements(minFont).isEmpty();
+    }
+
+    public boolean isMaxFont() {
+        return !driver.findElements(maxFont).isEmpty();
+    }
+
+    public boolean isDefaultFont() {
+        return !driver.findElements(defaultFont).isEmpty();
     }
 
 }

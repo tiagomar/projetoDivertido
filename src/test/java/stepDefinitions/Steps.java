@@ -60,8 +60,6 @@ public class Steps {
         Assert.assertEquals(resultPage.getCep(), cep);
     }
 
-
-
     @When("eu informo o CEP invalido {string}")
     public void eu_informo_o_CEP_invalido(String cepInvalido) {
         homePage.insertEnderecoOuCep(cepInvalido);
@@ -71,8 +69,6 @@ public class Steps {
     public void será_retornado_o_erro(String mensagem) {
         Assert.assertEquals(resultPage.getResultMessage(), mensagem);
     }
-
-
 
     @When("informo o nome do logradouro com erro de digitação: {string}")
     public void informo_o_nome_do_logradouro_com_erro_de_digitação(String string) {
@@ -88,8 +84,6 @@ public class Steps {
     public void o_nome_correto_do_logradouro_aparece_nos_resultados(String string) {
         resultPage.isInResults(string);
     }
-
-
 
     @When("escolho opção Cep por localidade\\/logradouro")
     public void escolho_opção_Cep_por_localidade_logradouro() {
@@ -116,9 +110,6 @@ public class Steps {
         Assert.assertEquals(localidadePage.getAlertText(), string);
     }
 
-
-
-
     @When("o usuário clica na opção Contraste")
     public void o_usuário_clica_na_opção_Contraste() {
         homePage.alternateContrast();
@@ -128,7 +119,6 @@ public class Steps {
     public void o_site_é_exibido_em_modo_de_alto_contraste() {
         Assert.assertTrue(homePage.isContrastModeON());
     }
-
 
     @Given("que estou na pagina de Busca de logradouro por bairro")
     public void que_estou_na_pagina_de_Busca_de_logradouro_por_bairro() {
@@ -156,7 +146,44 @@ public class Steps {
         Assert.assertTrue(resultPage.isInResults("53515-250"));
     }
 
+    @Given("fonte está em tamanho máximo")
+    public void fonte_está_em_tamanho_máximo() {
+        homePage.clickBiggerFont()
+                .clickBiggerFont();
+        Assert.assertTrue(homePage.isMaxFont());
+    }
 
+    @When("eu clico duas vezes no botão de aumentar a fonte")
+    public void eu_clico_duas_vezes_no_botão_de_aumentar_a_fonte() {
+        homePage.clickBiggerFont()
+                .clickBiggerFont();
+    }
+
+    @Then("o tamanho da fonte será o máximo")
+    public void o_tamanho_da_fonte_será_o_máximo() {
+        Assert.assertTrue(homePage.isMaxFont());
+    }
+
+    @When("eu clico duas vezes no botão de diminuir a fonte")
+    public void eu_clico_duas_vezes_no_botão_de_diminuir_a_fonte() {
+        homePage.clickSmallerFont()
+                .clickSmallerFont();
+    }
+
+    @Then("o tamanho da fonte será o mínimo")
+    public void o_tamanho_da_fonte_será_o_mínimo() {
+        Assert.assertTrue(homePage.isMinFont());
+    }
+
+    @When("eu clico em Tamanho padrão")
+    public void eu_clico_em_Tamanho_padrão() {
+        homePage.clickDefaultFont();
+    }
+
+    @Then("o tamanho da fonte será redefinido para o padrão")
+    public void o_tamanho_da_fonte_será_redefinido_para_o_padrão() {
+        Assert.assertTrue(homePage.isDefaultFont());
+    }
 
 
 
