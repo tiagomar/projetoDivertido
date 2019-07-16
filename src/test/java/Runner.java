@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-            features={"src/test/java/resources/features/buscaCep.feature"},
+            features={"src/test/resources/features/buscaCep.feature"},
             glue={"stepDefinitions"}
     )
 public class Runner {
