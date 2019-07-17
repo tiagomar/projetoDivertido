@@ -72,6 +72,7 @@ Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de 
   When clico em buscar
   Then vejo mensagem dizendo "DADOS ENCONTRADOS COM SUCESSO."
 
+#  OK
 Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
   Given que estou na pagina de Busca de logradouro por bairro
   When Informar um bairo que não corresponde a localidade e UF
@@ -85,16 +86,19 @@ Scenario: Realizar a pesquisa de logradouro por bairro com informação inválid
 #  And Selecionar opção de nova consulta
 #  Then Será retornado para a tela de consulta
 
+#  OK
 Scenario: Ajustar tamanho da fonte para o máximo
   Given que estou na pagina de Busca CEP
   When eu clico duas vezes no botão de aumentar a fonte
   Then o tamanho da fonte será o máximo
 
+#  OK
 Scenario: Ajustar tamanho da fonte para o mínimo
   Given que estou na pagina de Busca CEP
   When eu clico duas vezes no botão de diminuir a fonte
   Then o tamanho da fonte será o mínimo
 
+#  OK
 Scenario: Ajustar tamanho da fonte para o padrão
   Given que estou na pagina de Busca CEP
   And fonte está em tamanho máximo
