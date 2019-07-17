@@ -23,7 +23,7 @@ public class ResultPage {
     By bairroResult = By.cssSelector("#Geral+table tr:last-child :nth-child(2)");
     By localUfResult = By.cssSelector("#Geral+table tr:last-child :nth-child(3)");
     By cepResult = By.cssSelector("#Geral+table tr:last-child :nth-child(4)");
-
+    By logradouroNaoEncontrado = By.cssSelector("p");
     //Actions
     public String getResultMessage() {
         return driver.findElement(resultMessage).getText().trim();
@@ -49,5 +49,9 @@ public class ResultPage {
         String desiredXpath = "\"//td[contains(text(), \'" + desiredText + "\')]\"";
         List<WebElement> resultsList = driver.findElements(By.xpath("//td[contains(text(), \'" + desiredText + "\')]"));
         return !resultsList.isEmpty();
+    }
+
+    public String getLogradouroNaoEncontrado(){
+        return driver.findElement(logradouroNaoEncontrado).getText().trim();
     }
 }

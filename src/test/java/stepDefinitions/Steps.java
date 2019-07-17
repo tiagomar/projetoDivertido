@@ -197,6 +197,18 @@ public class Steps {
     }
 
 
+    @When("Informar um bairo que não corresponde a localidade e UF")
+    public void informarUmBairoQueNãoCorrespondeALocalidadeEUF() {
+        logradouroPorBairroPage.selectUf("PE");
+        logradouroPorBairroPage.informLocalidadeHelp();
+        logradouroPorBairroPage.insertBairro();
+        logradouroPorBairroPage.buscar();
+    }
 
 
+    @Then("O bairro não será encontrado validando mensagem - BAIRRO\\/LOGRADOURO NAO ENCONTRADO.")
+    public void o_bairro_não_será_encontrado_validando_mensagem_BAIRRO_LOGRADOURO_NAO_ENCONTRADO() {
+        String msg = "BAIRRO/LOGRADOURO NAO ENCONTRADO.";
+        Assert.assertEquals(resultPage.getLogradouroNaoEncontrado(), msg);
+    }
 }

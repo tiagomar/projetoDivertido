@@ -25,7 +25,7 @@ public class LogradouroPorBairroPage {
     By fisrtLetter = By.cssSelector("a");
     By firstRadioButton = By.cssSelector("input");
     By buscarButton = By.cssSelector("input[value='Buscar']");
-
+    By inserirBairro = By.cssSelector("input[name='Bairro");
 
     //Actions
     public LogradouroPorBairroPage accessPage() {
@@ -71,4 +71,9 @@ public class LogradouroPorBairroPage {
         driver.findElement(buscarButton).click();
         return this;
     }
+
+    public void insertBairro(){
+        driver.findElement(inserirBairro).sendKeys("berlim");
+    }
+
 }

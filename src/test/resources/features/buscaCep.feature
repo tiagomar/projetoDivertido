@@ -72,10 +72,12 @@ Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de 
   When clico em buscar
   Then vejo mensagem dizendo "DADOS ENCONTRADOS COM SUCESSO."
 
-#Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
-#  Given que estou na pagina de Busca de logradouro por bairro
-#  When Informar um bairo que não corresponde a localidade e UF
-#  Then O bairro não será encontrado
+Scenario: Realizar a pesquisa de logradouro por bairro com informação inválidas
+  Given que estou na pagina de Busca de logradouro por bairro
+  When Informar um bairo que não corresponde a localidade e UF
+  Then O bairro não será encontrado validando mensagem - BAIRRO/LOGRADOURO NAO ENCONTRADO.
+
+
 #
 #Scenario: validar a opção de retorno após consulta
 #  Given Usuário esteja na opção de caixa postal
@@ -83,18 +85,18 @@ Scenario: Inserir dados na busca de logradouro por bairro utilizando botões de 
 #  And Selecionar opção de nova consulta
 #  Then Será retornado para a tela de consulta
 
-  Scenario: Ajustar tamanho da fonte para o máximo
-    Given que estou na pagina de Busca CEP
-    When eu clico duas vezes no botão de aumentar a fonte
-    Then o tamanho da fonte será o máximo
+Scenario: Ajustar tamanho da fonte para o máximo
+  Given que estou na pagina de Busca CEP
+  When eu clico duas vezes no botão de aumentar a fonte
+  Then o tamanho da fonte será o máximo
 
-  Scenario: Ajustar tamanho da fonte para o mínimo
-    Given que estou na pagina de Busca CEP
-    When eu clico duas vezes no botão de diminuir a fonte
-    Then o tamanho da fonte será o mínimo
+Scenario: Ajustar tamanho da fonte para o mínimo
+  Given que estou na pagina de Busca CEP
+  When eu clico duas vezes no botão de diminuir a fonte
+  Then o tamanho da fonte será o mínimo
 
-  Scenario: Ajustar tamanho da fonte para o padrão
-    Given que estou na pagina de Busca CEP
-    And fonte está em tamanho máximo
-    When eu clico em Tamanho padrão
-    Then o tamanho da fonte será redefinido para o padrão
+Scenario: Ajustar tamanho da fonte para o padrão
+  Given que estou na pagina de Busca CEP
+  And fonte está em tamanho máximo
+  When eu clico em Tamanho padrão
+  Then o tamanho da fonte será redefinido para o padrão
