@@ -9,8 +9,9 @@ Feature: Busca CEP
     Then será apresentado o "<logradouro>" "<bairro>" "<local_UF>" "<cep>"
 
     Examples:
-      | cep       | logradouro         | bairro | local_UF  |
-      | 50030-310 | Avenida Rio Branco | Recife | Recife/PE |
+      | cep       | logradouro                           | bairro   | local_UF  |
+      | 50030-310 | Avenida Rio Branco                   | Recife   | Recife/PE |
+      | 50710-485 | Rua Padre Landim - de 116/117 ao fim | Madalena | Recife/PE |
 
   Scenario: Validar a opção de retorno após consulta
     Given Usuário esteja na de Busca Caixa Postal
@@ -31,9 +32,10 @@ Feature: Busca CEP
     And clico em buscar
     Then o nome correto do logradouro aparece nos resultados: "<correct_address>"
 
-  Examples:
-    | wrong_address | correct_address    |
-    | code boa vita | Conde da Boa Vista |
+    Examples:
+      | wrong_address       | correct_address          |
+      | code boa vita       | Conde da Boa Vista       |
+      | conselhei rosa silv | Conselheiro Rosa e Silva |
 
   Scenario: Validar segunda recomendação de endereçamento de envelope
     Given que estou na pagina de Busca CEP
