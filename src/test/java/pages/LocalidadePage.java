@@ -3,16 +3,10 @@ package pages;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class LocalidadePage {
 
     private WebDriver driver;
-    private String pageUrl = "http://www.buscacep.correios.com.br/sistemas/buscacep/";
-
-    Alert alert;
 
     public LocalidadePage(WebDriver driver){
         this.driver = driver;

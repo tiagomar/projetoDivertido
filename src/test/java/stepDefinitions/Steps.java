@@ -18,10 +18,11 @@ public class Steps {
     LocalidadePage localidadePage;
     LogradouroPorBairroPage logradouroPorBairroPage;
     EnderecamentoPage enderecamentoPage;
+    CaixaPostalPage caixaPostalPage;
 
     @Before
     public void beforeScenario() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -30,6 +31,7 @@ public class Steps {
         localidadePage = new LocalidadePage(driver);
         logradouroPorBairroPage = new LogradouroPorBairroPage(driver);
         enderecamentoPage = new EnderecamentoPage(driver);
+        caixaPostalPage = new CaixaPostalPage(driver);
     }
 
     @After
@@ -211,4 +213,29 @@ public class Steps {
         String msg = "BAIRRO/LOGRADOURO NAO ENCONTRADO.";
         Assert.assertEquals(resultPage.getLogradouroNaoEncontrado(), msg);
     }
+
+    @Given("Usuário esteja na de Busca Caixa Postal")
+    public void usuário_esteja_na_de_Busca_Caixa_Postal() {
+        caixaPostalPage.accessPage();
+    }
+
+    @When("realiza uma pesquisa válida")
+    public void realiza_uma_pesquisa_válida() {
+        caixaPostalPage
+                .selectUf("PE")
+                .informarLocalidade("Recife")
+                .informarCaixaPostal("4001")
+                .buscar();
+    }
+
+    @When("clica em Nova Consulta na página de resultados")
+    public void clica_em_Nova_Consulta_na_página_de_resultados() {
+        resultPage.novaConsulta();
+    }
+
+    @Then("é redirecionado para a tela de Busca Caixa Postal")
+    public void é_redirecionado_para_a_tela_de_Busca_Caixa_Postal() {
+        Assert.assertEquals(driver.getCurrentUrl(),"http://www.buscacep.correios.com.br/sistemas/buscacep/buscaCaixaPostal.cfm");
+    }
+
 }

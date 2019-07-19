@@ -1,16 +1,15 @@
 package pages;
 
-import cucumber.api.java.sl.In;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
 public class ResultPage {
 
     private WebDriver driver;
+    private Class previousPage;
     private String pageUrl = "http://www.buscacep.correios.com.br/sistemas/buscacep/";
 
     public ResultPage(WebDriver driver){
@@ -24,6 +23,8 @@ public class ResultPage {
     By localUfResult = By.cssSelector("#Geral+table tr:last-child :nth-child(3)");
     By cepResult = By.cssSelector("#Geral+table tr:last-child :nth-child(4)");
     By logradouroNaoEncontrado = By.cssSelector("p");
+    By novaConsultaLink = By.xpath("//a[contains(text(), '[ Nova Consulta ]')]");
+
     //Actions
     public String getResultMessage() {
         return driver.findElement(resultMessage).getText().trim();
@@ -53,5 +54,9 @@ public class ResultPage {
 
     public String getLogradouroNaoEncontrado(){
         return driver.findElement(logradouroNaoEncontrado).getText().trim();
+    }
+
+    public void novaConsulta() {
+        driver.findElement(novaConsultaLink).click();
     }
 }

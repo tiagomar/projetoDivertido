@@ -2,7 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -103,22 +106,22 @@ public class HomePage {
     }
 
     public HomePage clickBiggerFont() {
-        driver.findElement(biggerFontButton).click();
+        waitAndClick(biggerFontButton);
         return this;
     }
 
     public HomePage clickSmallerFont() {
-        driver.findElement(smallerFontButton).click();
+        waitAndClick(smallerFontButton);
         return this;
     }
 
     public HomePage clickDefaultFont() {
-        driver.findElement(defaultFontLink).click();
+        waitAndClick(defaultFontLink);
         return this;
     }
 
     public  HomePage clickFormasEnderecamento() {
-        driver.findElement(formasEnderecamentoLink).click();
+        waitAndClick(formasEnderecamentoLink);
         return  this;
     }
 
@@ -133,5 +136,16 @@ public class HomePage {
     public boolean isDefaultFont() {
         return !driver.findElements(defaultFont).isEmpty();
     }
+
+    //Util
+    public void waitAndClick(By locator){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = driver.findElement(locator);
+
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        element.click();
+    }
+
 
 }
