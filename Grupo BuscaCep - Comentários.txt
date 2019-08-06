@@ -1,0 +1,15 @@
+Grupo BuscaCep - Comentários
+
+- Fizeram 12 cenários, mas todos foram feitos no mesmo arquivo de funcionalidade. Poderiam ter dividido para atender o requisito que determinei "10 cenários em mais de uma funcionalidade".
+- Os cenários 7, 10, 11, 12 não tem relação com a feature "busca cep". Inclusive, o objetivo deles parece ser usabilidade.
+- Não usaram tags.
+- Algumas frases dos cenários foram um pouco difícies de entender. Exemplo: O bairro não será encontrado validando mensagem - BAIRRO/LOGRADOURO NAO ENCONTRADO.
+- O objetivo do cenário 2 não ficou claro.
+- Algumas frases dos cenários usam "usuário" como referêcia, algumas usam "eu".
+- O cenário 5 poderia ser um teste de camada mais baixa na pirâmide, não precisaria ser um teste nessa camada, que tem como objetivo passar pelo backend e frontend.
+- Usaram a palavra "validar", mas poderiam não ter usado, assim o nome do cenário se aproximaria mais de um comportamento (BDD).
+
+- Alguns testes passavam em algumas execuções e falhavam em outras.
+- Existem muitos métodos não utilizados nos testes.
+- Usaram definições de estilo nos seletores, como "body[style='font-size: 12px;']". Não é interessante, pois estilo é facilmente alterado.
+
